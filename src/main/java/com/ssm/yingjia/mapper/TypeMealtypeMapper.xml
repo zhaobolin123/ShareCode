@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.yingjia.mapper.TypeMealtypeMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.yingjia.po.TypeMealtype" >
+    <id column="mealtype_id" property="mealtypeId" jdbcType="INTEGER" />
+    <result column="menu_id" property="menuId" jdbcType="INTEGER" />
+    <result column="mealtype_name" property="mealtypeName" jdbcType="VARCHAR" />
+    <result column="mealtype_type" property="mealtypeType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mealtype_id, menu_id, mealtype_name, mealtype_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.yingjia.po.TypeMealtypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from type_mealtype
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from type_mealtype
+    where mealtype_id = #{mealtypeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from type_mealtype
+    where mealtype_id = #{mealtypeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.yingjia.po.TypeMealtypeExample" >
+    delete from type_mealtype
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.yingjia.po.TypeMealtype" >
+    insert into type_mealtype (mealtype_id, menu_id, mealtype_name, 
+      mealtype_type)
+    values (#{mealtypeId,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER}, #{mealtypeName,jdbcType=VARCHAR}, 
+      #{mealtypeType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.yingjia.po.TypeMealtype" >
+    insert into type_mealtype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mealtypeId != null" >
+        mealtype_id,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="mealtypeName != null" >
+        mealtype_name,
+      </if>
+      <if test="mealtypeType != null" >
+        mealtype_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mealtypeId != null" >
+        #{mealtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="mealtypeName != null" >
+        #{mealtypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="mealtypeType != null" >
+        #{mealtypeType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.yingjia.po.TypeMealtypeExample" resultType="java.lang.Integer" >
+    select count(*) from type_mealtype
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update type_mealtype
+    <set >
+      <if test="record.mealtypeId != null" >
+        mealtype_id = #{record.mealtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.menuId != null" >
+        menu_id = #{record.menuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mealtypeName != null" >
+        mealtype_name = #{record.mealtypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mealtypeType != null" >
+        mealtype_type = #{record.mealtypeType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update type_mealtype
+    set mealtype_id = #{record.mealtypeId,jdbcType=INTEGER},
+      menu_id = #{record.menuId,jdbcType=INTEGER},
+      mealtype_name = #{record.mealtypeName,jdbcType=VARCHAR},
+      mealtype_type = #{record.mealtypeType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.yingjia.po.TypeMealtype" >
+    update type_mealtype
+    <set >
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="mealtypeName != null" >
+        mealtype_name = #{mealtypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="mealtypeType != null" >
+        mealtype_type = #{mealtypeType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where mealtype_id = #{mealtypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.yingjia.po.TypeMealtype" >
+    update type_mealtype
+    set menu_id = #{menuId,jdbcType=INTEGER},
+      mealtype_name = #{mealtypeName,jdbcType=VARCHAR},
+      mealtype_type = #{mealtypeType,jdbcType=INTEGER}
+    where mealtype_id = #{mealtypeId,jdbcType=INTEGER}
+  </update>
+</mapper>

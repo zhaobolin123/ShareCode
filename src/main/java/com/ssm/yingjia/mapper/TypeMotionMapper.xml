@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.yingjia.mapper.TypeMotionMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.yingjia.po.TypeMotion" >
+    <id column="motion_id" property="motionId" jdbcType="INTEGER" />
+    <result column="menu_id" property="menuId" jdbcType="INTEGER" />
+    <result column="motion_name" property="motionName" jdbcType="VARCHAR" />
+    <result column="motion_type" property="motionType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    motion_id, menu_id, motion_name, motion_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.yingjia.po.TypeMotionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from type_motion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from type_motion
+    where motion_id = #{motionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from type_motion
+    where motion_id = #{motionId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.yingjia.po.TypeMotionExample" >
+    delete from type_motion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.yingjia.po.TypeMotion" >
+    insert into type_motion (motion_id, menu_id, motion_name, 
+      motion_type)
+    values (#{motionId,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER}, #{motionName,jdbcType=VARCHAR}, 
+      #{motionType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.yingjia.po.TypeMotion" >
+    insert into type_motion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="motionId != null" >
+        motion_id,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="motionName != null" >
+        motion_name,
+      </if>
+      <if test="motionType != null" >
+        motion_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="motionId != null" >
+        #{motionId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="motionName != null" >
+        #{motionName,jdbcType=VARCHAR},
+      </if>
+      <if test="motionType != null" >
+        #{motionType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.yingjia.po.TypeMotionExample" resultType="java.lang.Integer" >
+    select count(*) from type_motion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update type_motion
+    <set >
+      <if test="record.motionId != null" >
+        motion_id = #{record.motionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.menuId != null" >
+        menu_id = #{record.menuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.motionName != null" >
+        motion_name = #{record.motionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.motionType != null" >
+        motion_type = #{record.motionType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update type_motion
+    set motion_id = #{record.motionId,jdbcType=INTEGER},
+      menu_id = #{record.menuId,jdbcType=INTEGER},
+      motion_name = #{record.motionName,jdbcType=VARCHAR},
+      motion_type = #{record.motionType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.yingjia.po.TypeMotion" >
+    update type_motion
+    <set >
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="motionName != null" >
+        motion_name = #{motionName,jdbcType=VARCHAR},
+      </if>
+      <if test="motionType != null" >
+        motion_type = #{motionType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where motion_id = #{motionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.yingjia.po.TypeMotion" >
+    update type_motion
+    set menu_id = #{menuId,jdbcType=INTEGER},
+      motion_name = #{motionName,jdbcType=VARCHAR},
+      motion_type = #{motionType,jdbcType=INTEGER}
+    where motion_id = #{motionId,jdbcType=INTEGER}
+  </update>
+</mapper>

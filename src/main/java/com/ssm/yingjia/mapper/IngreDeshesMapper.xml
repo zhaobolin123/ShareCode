@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.yingjia.mapper.IngreDeshesMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.yingjia.po.IngreDeshes" >
+    <id column="ingre-deshes_id" property="ingreDeshesId" jdbcType="INTEGER" />
+    <result column="dishes_id" property="dishesId" jdbcType="INTEGER" />
+    <result column="ingre_id" property="ingreId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ingre-deshes_id, dishes_id, ingre_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.yingjia.po.IngreDeshesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ingre-deshes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ingre-deshes
+    where ingre-deshes_id = #{ingreDeshesId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ingre-deshes
+    where ingre-deshes_id = #{ingreDeshesId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.yingjia.po.IngreDeshesExample" >
+    delete from ingre-deshes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.yingjia.po.IngreDeshes" >
+    insert into ingre-deshes (ingre-deshes_id, dishes_id, ingre_id
+      )
+    values (#{ingreDeshesId,jdbcType=INTEGER}, #{dishesId,jdbcType=INTEGER}, #{ingreId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.yingjia.po.IngreDeshes" >
+    insert into ingre-deshes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ingreDeshesId != null" >
+        ingre-deshes_id,
+      </if>
+      <if test="dishesId != null" >
+        dishes_id,
+      </if>
+      <if test="ingreId != null" >
+        ingre_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ingreDeshesId != null" >
+        #{ingreDeshesId,jdbcType=INTEGER},
+      </if>
+      <if test="dishesId != null" >
+        #{dishesId,jdbcType=INTEGER},
+      </if>
+      <if test="ingreId != null" >
+        #{ingreId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.yingjia.po.IngreDeshesExample" resultType="java.lang.Integer" >
+    select count(*) from ingre-deshes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ingre-deshes
+    <set >
+      <if test="record.ingreDeshesId != null" >
+        ingre-deshes_id = #{record.ingreDeshesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dishesId != null" >
+        dishes_id = #{record.dishesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ingreId != null" >
+        ingre_id = #{record.ingreId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ingre-deshes
+    set ingre-deshes_id = #{record.ingreDeshesId,jdbcType=INTEGER},
+      dishes_id = #{record.dishesId,jdbcType=INTEGER},
+      ingre_id = #{record.ingreId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.yingjia.po.IngreDeshes" >
+    update ingre-deshes
+    <set >
+      <if test="dishesId != null" >
+        dishes_id = #{dishesId,jdbcType=INTEGER},
+      </if>
+      <if test="ingreId != null" >
+        ingre_id = #{ingreId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ingre-deshes_id = #{ingreDeshesId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.yingjia.po.IngreDeshes" >
+    update ingre-deshes
+    set dishes_id = #{dishesId,jdbcType=INTEGER},
+      ingre_id = #{ingreId,jdbcType=INTEGER}
+    where ingre-deshes_id = #{ingreDeshesId,jdbcType=INTEGER}
+  </update>
+</mapper>

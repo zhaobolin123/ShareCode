@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.yingjia.mapper.BusinessMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.yingjia.po.Business" >
+    <id column="bus_id" property="busId" jdbcType="INTEGER" />
+    <result column="bus_name" property="busName" jdbcType="VARCHAR" />
+    <result column="bus_phone" property="busPhone" jdbcType="VARCHAR" />
+    <result column="bus_password" property="busPassword" jdbcType="VARCHAR" />
+    <result column="bus_loc" property="busLoc" jdbcType="VARCHAR" />
+    <result column="bus_level" property="busLevel" jdbcType="INTEGER" />
+    <result column="bus_contact" property="busContact" jdbcType="VARCHAR" />
+    <result column="bus_introduction" property="busIntroduction" jdbcType="VARCHAR" />
+    <result column="bus_pic" property="busPic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    bus_id, bus_name, bus_phone, bus_password, bus_loc, bus_level, bus_contact, bus_introduction, 
+    bus_pic
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.yingjia.po.BusinessExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from business
+    where bus_id = #{busId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from business
+    where bus_id = #{busId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.yingjia.po.BusinessExample" >
+    delete from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.yingjia.po.Business" >
+    insert into business (bus_id, bus_name, bus_phone, 
+      bus_password, bus_loc, bus_level, 
+      bus_contact, bus_introduction, bus_pic
+      )
+    values (#{busId,jdbcType=INTEGER}, #{busName,jdbcType=VARCHAR}, #{busPhone,jdbcType=VARCHAR}, 
+      #{busPassword,jdbcType=VARCHAR}, #{busLoc,jdbcType=VARCHAR}, #{busLevel,jdbcType=INTEGER}, 
+      #{busContact,jdbcType=VARCHAR}, #{busIntroduction,jdbcType=VARCHAR}, #{busPic,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.yingjia.po.Business" >
+    insert into business
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="busId != null" >
+        bus_id,
+      </if>
+      <if test="busName != null" >
+        bus_name,
+      </if>
+      <if test="busPhone != null" >
+        bus_phone,
+      </if>
+      <if test="busPassword != null" >
+        bus_password,
+      </if>
+      <if test="busLoc != null" >
+        bus_loc,
+      </if>
+      <if test="busLevel != null" >
+        bus_level,
+      </if>
+      <if test="busContact != null" >
+        bus_contact,
+      </if>
+      <if test="busIntroduction != null" >
+        bus_introduction,
+      </if>
+      <if test="busPic != null" >
+        bus_pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="busId != null" >
+        #{busId,jdbcType=INTEGER},
+      </if>
+      <if test="busName != null" >
+        #{busName,jdbcType=VARCHAR},
+      </if>
+      <if test="busPhone != null" >
+        #{busPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="busPassword != null" >
+        #{busPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="busLoc != null" >
+        #{busLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="busLevel != null" >
+        #{busLevel,jdbcType=INTEGER},
+      </if>
+      <if test="busContact != null" >
+        #{busContact,jdbcType=VARCHAR},
+      </if>
+      <if test="busIntroduction != null" >
+        #{busIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="busPic != null" >
+        #{busPic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.yingjia.po.BusinessExample" resultType="java.lang.Integer" >
+    select count(*) from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update business
+    <set >
+      <if test="record.busId != null" >
+        bus_id = #{record.busId,jdbcType=INTEGER},
+      </if>
+      <if test="record.busName != null" >
+        bus_name = #{record.busName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busPhone != null" >
+        bus_phone = #{record.busPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busPassword != null" >
+        bus_password = #{record.busPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busLoc != null" >
+        bus_loc = #{record.busLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busLevel != null" >
+        bus_level = #{record.busLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.busContact != null" >
+        bus_contact = #{record.busContact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busIntroduction != null" >
+        bus_introduction = #{record.busIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busPic != null" >
+        bus_pic = #{record.busPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update business
+    set bus_id = #{record.busId,jdbcType=INTEGER},
+      bus_name = #{record.busName,jdbcType=VARCHAR},
+      bus_phone = #{record.busPhone,jdbcType=VARCHAR},
+      bus_password = #{record.busPassword,jdbcType=VARCHAR},
+      bus_loc = #{record.busLoc,jdbcType=VARCHAR},
+      bus_level = #{record.busLevel,jdbcType=INTEGER},
+      bus_contact = #{record.busContact,jdbcType=VARCHAR},
+      bus_introduction = #{record.busIntroduction,jdbcType=VARCHAR},
+      bus_pic = #{record.busPic,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.yingjia.po.Business" >
+    update business
+    <set >
+      <if test="busName != null" >
+        bus_name = #{busName,jdbcType=VARCHAR},
+      </if>
+      <if test="busPhone != null" >
+        bus_phone = #{busPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="busPassword != null" >
+        bus_password = #{busPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="busLoc != null" >
+        bus_loc = #{busLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="busLevel != null" >
+        bus_level = #{busLevel,jdbcType=INTEGER},
+      </if>
+      <if test="busContact != null" >
+        bus_contact = #{busContact,jdbcType=VARCHAR},
+      </if>
+      <if test="busIntroduction != null" >
+        bus_introduction = #{busIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="busPic != null" >
+        bus_pic = #{busPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bus_id = #{busId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.yingjia.po.Business" >
+    update business
+    set bus_name = #{busName,jdbcType=VARCHAR},
+      bus_phone = #{busPhone,jdbcType=VARCHAR},
+      bus_password = #{busPassword,jdbcType=VARCHAR},
+      bus_loc = #{busLoc,jdbcType=VARCHAR},
+      bus_level = #{busLevel,jdbcType=INTEGER},
+      bus_contact = #{busContact,jdbcType=VARCHAR},
+      bus_introduction = #{busIntroduction,jdbcType=VARCHAR},
+      bus_pic = #{busPic,jdbcType=VARCHAR}
+    where bus_id = #{busId,jdbcType=INTEGER}
+  </update>
+</mapper>

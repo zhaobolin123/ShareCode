@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.yingjia.mapper.PushMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.yingjia.po.Push" >
+    <id column="push_id" property="pushId" jdbcType="INTEGER" />
+    <result column="push_name" property="pushName" jdbcType="VARCHAR" />
+    <result column="push_type" property="pushType" jdbcType="INTEGER" />
+    <result column="dietitian_id" property="dietitianId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ssm.yingjia.po.Push" extends="BaseResultMap" >
+    <result column="push_content" property="pushContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    push_id, push_name, push_type, dietitian_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    push_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ssm.yingjia.po.PushExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from push
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.yingjia.po.PushExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from push
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from push
+    where push_id = #{pushId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from push
+    where push_id = #{pushId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.yingjia.po.PushExample" >
+    delete from push
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.yingjia.po.Push" >
+    insert into push (push_id, push_name, push_type, 
+      dietitian_id, push_content)
+    values (#{pushId,jdbcType=INTEGER}, #{pushName,jdbcType=VARCHAR}, #{pushType,jdbcType=INTEGER}, 
+      #{dietitianId,jdbcType=INTEGER}, #{pushContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.yingjia.po.Push" >
+    insert into push
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pushId != null" >
+        push_id,
+      </if>
+      <if test="pushName != null" >
+        push_name,
+      </if>
+      <if test="pushType != null" >
+        push_type,
+      </if>
+      <if test="dietitianId != null" >
+        dietitian_id,
+      </if>
+      <if test="pushContent != null" >
+        push_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pushId != null" >
+        #{pushId,jdbcType=INTEGER},
+      </if>
+      <if test="pushName != null" >
+        #{pushName,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null" >
+        #{pushType,jdbcType=INTEGER},
+      </if>
+      <if test="dietitianId != null" >
+        #{dietitianId,jdbcType=INTEGER},
+      </if>
+      <if test="pushContent != null" >
+        #{pushContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.yingjia.po.PushExample" resultType="java.lang.Integer" >
+    select count(*) from push
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update push
+    <set >
+      <if test="record.pushId != null" >
+        push_id = #{record.pushId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushName != null" >
+        push_name = #{record.pushName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pushType != null" >
+        push_type = #{record.pushType,jdbcType=INTEGER},
+      </if>
+      <if test="record.dietitianId != null" >
+        dietitian_id = #{record.dietitianId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushContent != null" >
+        push_content = #{record.pushContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update push
+    set push_id = #{record.pushId,jdbcType=INTEGER},
+      push_name = #{record.pushName,jdbcType=VARCHAR},
+      push_type = #{record.pushType,jdbcType=INTEGER},
+      dietitian_id = #{record.dietitianId,jdbcType=INTEGER},
+      push_content = #{record.pushContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update push
+    set push_id = #{record.pushId,jdbcType=INTEGER},
+      push_name = #{record.pushName,jdbcType=VARCHAR},
+      push_type = #{record.pushType,jdbcType=INTEGER},
+      dietitian_id = #{record.dietitianId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.yingjia.po.Push" >
+    update push
+    <set >
+      <if test="pushName != null" >
+        push_name = #{pushName,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null" >
+        push_type = #{pushType,jdbcType=INTEGER},
+      </if>
+      <if test="dietitianId != null" >
+        dietitian_id = #{dietitianId,jdbcType=INTEGER},
+      </if>
+      <if test="pushContent != null" >
+        push_content = #{pushContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where push_id = #{pushId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ssm.yingjia.po.Push" >
+    update push
+    set push_name = #{pushName,jdbcType=VARCHAR},
+      push_type = #{pushType,jdbcType=INTEGER},
+      dietitian_id = #{dietitianId,jdbcType=INTEGER},
+      push_content = #{pushContent,jdbcType=LONGVARCHAR}
+    where push_id = #{pushId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.yingjia.po.Push" >
+    update push
+    set push_name = #{pushName,jdbcType=VARCHAR},
+      push_type = #{pushType,jdbcType=INTEGER},
+      dietitian_id = #{dietitianId,jdbcType=INTEGER}
+    where push_id = #{pushId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.yingjia.mapper.TypeAllergenMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.yingjia.po.TypeAllergen" >
+    <id column="allergen_id" property="allergenId" jdbcType="INTEGER" />
+    <result column="menu_id" property="menuId" jdbcType="INTEGER" />
+    <result column="allergen_name" property="allergenName" jdbcType="VARCHAR" />
+    <result column="allergen_type" property="allergenType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    allergen_id, menu_id, allergen_name, allergen_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.yingjia.po.TypeAllergenExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from type_allergen
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from type_allergen
+    where allergen_id = #{allergenId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from type_allergen
+    where allergen_id = #{allergenId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.yingjia.po.TypeAllergenExample" >
+    delete from type_allergen
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.yingjia.po.TypeAllergen" >
+    insert into type_allergen (allergen_id, menu_id, allergen_name, 
+      allergen_type)
+    values (#{allergenId,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER}, #{allergenName,jdbcType=VARCHAR}, 
+      #{allergenType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.yingjia.po.TypeAllergen" >
+    insert into type_allergen
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="allergenId != null" >
+        allergen_id,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="allergenName != null" >
+        allergen_name,
+      </if>
+      <if test="allergenType != null" >
+        allergen_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="allergenId != null" >
+        #{allergenId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="allergenName != null" >
+        #{allergenName,jdbcType=VARCHAR},
+      </if>
+      <if test="allergenType != null" >
+        #{allergenType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.yingjia.po.TypeAllergenExample" resultType="java.lang.Integer" >
+    select count(*) from type_allergen
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update type_allergen
+    <set >
+      <if test="record.allergenId != null" >
+        allergen_id = #{record.allergenId,jdbcType=INTEGER},
+      </if>
+      <if test="record.menuId != null" >
+        menu_id = #{record.menuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.allergenName != null" >
+        allergen_name = #{record.allergenName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allergenType != null" >
+        allergen_type = #{record.allergenType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update type_allergen
+    set allergen_id = #{record.allergenId,jdbcType=INTEGER},
+      menu_id = #{record.menuId,jdbcType=INTEGER},
+      allergen_name = #{record.allergenName,jdbcType=VARCHAR},
+      allergen_type = #{record.allergenType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.yingjia.po.TypeAllergen" >
+    update type_allergen
+    <set >
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="allergenName != null" >
+        allergen_name = #{allergenName,jdbcType=VARCHAR},
+      </if>
+      <if test="allergenType != null" >
+        allergen_type = #{allergenType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where allergen_id = #{allergenId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.yingjia.po.TypeAllergen" >
+    update type_allergen
+    set menu_id = #{menuId,jdbcType=INTEGER},
+      allergen_name = #{allergenName,jdbcType=VARCHAR},
+      allergen_type = #{allergenType,jdbcType=INTEGER}
+    where allergen_id = #{allergenId,jdbcType=INTEGER}
+  </update>
+</mapper>

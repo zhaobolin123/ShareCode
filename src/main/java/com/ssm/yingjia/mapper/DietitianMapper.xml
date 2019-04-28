@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.yingjia.mapper.DietitianMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.yingjia.po.Dietitian" >
+    <id column="dietitian_id" property="dietitianId" jdbcType="INTEGER" />
+    <result column="dietitian_nickname" property="dietitianNickname" jdbcType="VARCHAR" />
+    <result column="dietitian_phone" property="dietitianPhone" jdbcType="VARCHAR" />
+    <result column="dietitian_password" property="dietitianPassword" jdbcType="VARCHAR" />
+    <result column="dietitian_number" property="dietitianNumber" jdbcType="INTEGER" />
+    <result column="dietitian_name" property="dietitianName" jdbcType="VARCHAR" />
+    <result column="dietitian_level" property="dietitianLevel" jdbcType="INTEGER" />
+    <result column="wallet" property="wallet" jdbcType="INTEGER" />
+    <result column="dietitian_pic" property="dietitianPic" jdbcType="VARCHAR" />
+    <result column="dietitian_time" property="dietitianTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dietitian_id, dietitian_nickname, dietitian_phone, dietitian_password, dietitian_number, 
+    dietitian_name, dietitian_level, wallet, dietitian_pic, dietitian_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.yingjia.po.DietitianExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dietitian
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dietitian
+    where dietitian_id = #{dietitianId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dietitian
+    where dietitian_id = #{dietitianId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.yingjia.po.DietitianExample" >
+    delete from dietitian
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.yingjia.po.Dietitian" >
+    insert into dietitian (dietitian_id, dietitian_nickname, dietitian_phone, 
+      dietitian_password, dietitian_number, dietitian_name, 
+      dietitian_level, wallet, dietitian_pic, 
+      dietitian_time)
+    values (#{dietitianId,jdbcType=INTEGER}, #{dietitianNickname,jdbcType=VARCHAR}, #{dietitianPhone,jdbcType=VARCHAR}, 
+      #{dietitianPassword,jdbcType=VARCHAR}, #{dietitianNumber,jdbcType=INTEGER}, #{dietitianName,jdbcType=VARCHAR}, 
+      #{dietitianLevel,jdbcType=INTEGER}, #{wallet,jdbcType=INTEGER}, #{dietitianPic,jdbcType=VARCHAR}, 
+      #{dietitianTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.yingjia.po.Dietitian" >
+    insert into dietitian
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dietitianId != null" >
+        dietitian_id,
+      </if>
+      <if test="dietitianNickname != null" >
+        dietitian_nickname,
+      </if>
+      <if test="dietitianPhone != null" >
+        dietitian_phone,
+      </if>
+      <if test="dietitianPassword != null" >
+        dietitian_password,
+      </if>
+      <if test="dietitianNumber != null" >
+        dietitian_number,
+      </if>
+      <if test="dietitianName != null" >
+        dietitian_name,
+      </if>
+      <if test="dietitianLevel != null" >
+        dietitian_level,
+      </if>
+      <if test="wallet != null" >
+        wallet,
+      </if>
+      <if test="dietitianPic != null" >
+        dietitian_pic,
+      </if>
+      <if test="dietitianTime != null" >
+        dietitian_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dietitianId != null" >
+        #{dietitianId,jdbcType=INTEGER},
+      </if>
+      <if test="dietitianNickname != null" >
+        #{dietitianNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="dietitianPhone != null" >
+        #{dietitianPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dietitianPassword != null" >
+        #{dietitianPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="dietitianNumber != null" >
+        #{dietitianNumber,jdbcType=INTEGER},
+      </if>
+      <if test="dietitianName != null" >
+        #{dietitianName,jdbcType=VARCHAR},
+      </if>
+      <if test="dietitianLevel != null" >
+        #{dietitianLevel,jdbcType=INTEGER},
+      </if>
+      <if test="wallet != null" >
+        #{wallet,jdbcType=INTEGER},
+      </if>
+      <if test="dietitianPic != null" >
+        #{dietitianPic,jdbcType=VARCHAR},
+      </if>
+      <if test="dietitianTime != null" >
+        #{dietitianTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.yingjia.po.DietitianExample" resultType="java.lang.Integer" >
+    select count(*) from dietitian
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dietitian
+    <set >
+      <if test="record.dietitianId != null" >
+        dietitian_id = #{record.dietitianId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dietitianNickname != null" >
+        dietitian_nickname = #{record.dietitianNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dietitianPhone != null" >
+        dietitian_phone = #{record.dietitianPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dietitianPassword != null" >
+        dietitian_password = #{record.dietitianPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dietitianNumber != null" >
+        dietitian_number = #{record.dietitianNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.dietitianName != null" >
+        dietitian_name = #{record.dietitianName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dietitianLevel != null" >
+        dietitian_level = #{record.dietitianLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.wallet != null" >
+        wallet = #{record.wallet,jdbcType=INTEGER},
+      </if>
+      <if test="record.dietitianPic != null" >
+        dietitian_pic = #{record.dietitianPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dietitianTime != null" >
+        dietitian_time = #{record.dietitianTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dietitian
+    set dietitian_id = #{record.dietitianId,jdbcType=INTEGER},
+      dietitian_nickname = #{record.dietitianNickname,jdbcType=VARCHAR},
+      dietitian_phone = #{record.dietitianPhone,jdbcType=VARCHAR},
+      dietitian_password = #{record.dietitianPassword,jdbcType=VARCHAR},
+      dietitian_number = #{record.dietitianNumber,jdbcType=INTEGER},
+      dietitian_name = #{record.dietitianName,jdbcType=VARCHAR},
+      dietitian_level = #{record.dietitianLevel,jdbcType=INTEGER},
+      wallet = #{record.wallet,jdbcType=INTEGER},
+      dietitian_pic = #{record.dietitianPic,jdbcType=VARCHAR},
+      dietitian_time = #{record.dietitianTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.yingjia.po.Dietitian" >
+    update dietitian
+    <set >
+      <if test="dietitianNickname != null" >
+        dietitian_nickname = #{dietitianNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="dietitianPhone != null" >
+        dietitian_phone = #{dietitianPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dietitianPassword != null" >
+        dietitian_password = #{dietitianPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="dietitianNumber != null" >
+        dietitian_number = #{dietitianNumber,jdbcType=INTEGER},
+      </if>
+      <if test="dietitianName != null" >
+        dietitian_name = #{dietitianName,jdbcType=VARCHAR},
+      </if>
+      <if test="dietitianLevel != null" >
+        dietitian_level = #{dietitianLevel,jdbcType=INTEGER},
+      </if>
+      <if test="wallet != null" >
+        wallet = #{wallet,jdbcType=INTEGER},
+      </if>
+      <if test="dietitianPic != null" >
+        dietitian_pic = #{dietitianPic,jdbcType=VARCHAR},
+      </if>
+      <if test="dietitianTime != null" >
+        dietitian_time = #{dietitianTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where dietitian_id = #{dietitianId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.yingjia.po.Dietitian" >
+    update dietitian
+    set dietitian_nickname = #{dietitianNickname,jdbcType=VARCHAR},
+      dietitian_phone = #{dietitianPhone,jdbcType=VARCHAR},
+      dietitian_password = #{dietitianPassword,jdbcType=VARCHAR},
+      dietitian_number = #{dietitianNumber,jdbcType=INTEGER},
+      dietitian_name = #{dietitianName,jdbcType=VARCHAR},
+      dietitian_level = #{dietitianLevel,jdbcType=INTEGER},
+      wallet = #{wallet,jdbcType=INTEGER},
+      dietitian_pic = #{dietitianPic,jdbcType=VARCHAR},
+      dietitian_time = #{dietitianTime,jdbcType=TIMESTAMP}
+    where dietitian_id = #{dietitianId,jdbcType=INTEGER}
+  </update>
+</mapper>

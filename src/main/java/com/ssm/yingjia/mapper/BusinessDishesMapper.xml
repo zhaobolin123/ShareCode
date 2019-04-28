@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.yingjia.mapper.BusinessDishesMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.yingjia.po.BusinessDishes" >
+    <id column="business-dishes_id" property="businessDishesId" jdbcType="INTEGER" />
+    <result column="bus_id" property="busId" jdbcType="INTEGER" />
+    <result column="dishes_id" property="dishesId" jdbcType="INTEGER" />
+    <result column="special_level" property="specialLevel" jdbcType="INTEGER" />
+    <result column="quality_level" property="qualityLevel" jdbcType="INTEGER" />
+    <result column="business-dishes_pic" property="businessDishesPic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    business-dishes_id, bus_id, dishes_id, special_level, quality_level, business-dishes_pic
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.yingjia.po.BusinessDishesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from business-dishes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from business-dishes
+    where business-dishes_id = #{businessDishesId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from business-dishes
+    where business-dishes_id = #{businessDishesId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.yingjia.po.BusinessDishesExample" >
+    delete from business-dishes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.yingjia.po.BusinessDishes" >
+    insert into business-dishes (business-dishes_id, bus_id, dishes_id, 
+      special_level, quality_level, business-dishes_pic
+      )
+    values (#{businessDishesId,jdbcType=INTEGER}, #{busId,jdbcType=INTEGER}, #{dishesId,jdbcType=INTEGER}, 
+      #{specialLevel,jdbcType=INTEGER}, #{qualityLevel,jdbcType=INTEGER}, #{businessDishesPic,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.yingjia.po.BusinessDishes" >
+    insert into business-dishes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="businessDishesId != null" >
+        business-dishes_id,
+      </if>
+      <if test="busId != null" >
+        bus_id,
+      </if>
+      <if test="dishesId != null" >
+        dishes_id,
+      </if>
+      <if test="specialLevel != null" >
+        special_level,
+      </if>
+      <if test="qualityLevel != null" >
+        quality_level,
+      </if>
+      <if test="businessDishesPic != null" >
+        business-dishes_pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="businessDishesId != null" >
+        #{businessDishesId,jdbcType=INTEGER},
+      </if>
+      <if test="busId != null" >
+        #{busId,jdbcType=INTEGER},
+      </if>
+      <if test="dishesId != null" >
+        #{dishesId,jdbcType=INTEGER},
+      </if>
+      <if test="specialLevel != null" >
+        #{specialLevel,jdbcType=INTEGER},
+      </if>
+      <if test="qualityLevel != null" >
+        #{qualityLevel,jdbcType=INTEGER},
+      </if>
+      <if test="businessDishesPic != null" >
+        #{businessDishesPic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.yingjia.po.BusinessDishesExample" resultType="java.lang.Integer" >
+    select count(*) from business-dishes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update business-dishes
+    <set >
+      <if test="record.businessDishesId != null" >
+        business-dishes_id = #{record.businessDishesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.busId != null" >
+        bus_id = #{record.busId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dishesId != null" >
+        dishes_id = #{record.dishesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.specialLevel != null" >
+        special_level = #{record.specialLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.qualityLevel != null" >
+        quality_level = #{record.qualityLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessDishesPic != null" >
+        business-dishes_pic = #{record.businessDishesPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update business-dishes
+    set business-dishes_id = #{record.businessDishesId,jdbcType=INTEGER},
+      bus_id = #{record.busId,jdbcType=INTEGER},
+      dishes_id = #{record.dishesId,jdbcType=INTEGER},
+      special_level = #{record.specialLevel,jdbcType=INTEGER},
+      quality_level = #{record.qualityLevel,jdbcType=INTEGER},
+      business-dishes_pic = #{record.businessDishesPic,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.yingjia.po.BusinessDishes" >
+    update business-dishes
+    <set >
+      <if test="busId != null" >
+        bus_id = #{busId,jdbcType=INTEGER},
+      </if>
+      <if test="dishesId != null" >
+        dishes_id = #{dishesId,jdbcType=INTEGER},
+      </if>
+      <if test="specialLevel != null" >
+        special_level = #{specialLevel,jdbcType=INTEGER},
+      </if>
+      <if test="qualityLevel != null" >
+        quality_level = #{qualityLevel,jdbcType=INTEGER},
+      </if>
+      <if test="businessDishesPic != null" >
+        business-dishes_pic = #{businessDishesPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where business-dishes_id = #{businessDishesId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.yingjia.po.BusinessDishes" >
+    update business-dishes
+    set bus_id = #{busId,jdbcType=INTEGER},
+      dishes_id = #{dishesId,jdbcType=INTEGER},
+      special_level = #{specialLevel,jdbcType=INTEGER},
+      quality_level = #{qualityLevel,jdbcType=INTEGER},
+      business-dishes_pic = #{businessDishesPic,jdbcType=VARCHAR}
+    where business-dishes_id = #{businessDishesId,jdbcType=INTEGER}
+  </update>
+</mapper>
