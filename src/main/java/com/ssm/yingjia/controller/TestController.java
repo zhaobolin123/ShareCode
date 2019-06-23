@@ -15,17 +15,14 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 @Controller
-@RequestMapping("test")
 public class TestController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "test",method = RequestMethod.GET)
-    public String testUser(Integer userId, HttpServletRequest request) throws Exception {
-        User user = userService.testUser(userId);
-        System.out.println(user.getUserName());
-        request.setAttribute("test",user);
+    @RequestMapping(value = "testMain",method = RequestMethod.GET)
+    public String testMain(HttpServletRequest request) throws Exception {
+
         return "jsp/index";
     }
 }
