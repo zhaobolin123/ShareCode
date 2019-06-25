@@ -1,0 +1,164 @@
+header{
+	width: 100%;
+	height: 70px;
+	padding: 0 230px;
+	box-shadow: 3px 3px 3px #D4D1D1;
+	position: sticky;
+	top: 0;
+	z-index: 5;
+	background-color: white;
+}
+.carousel-inner img {
+      width: 100%;
+      height: 100%;
+}
+header ul{
+	height: 70px;
+	width: 100%;
+}
+header li{
+	width: 160px;
+	height: 70px;
+	float: left;
+	border-left: 1px #EFEFEF solid;
+	line-height: 70px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 16px;
+	color: rgb(59, 59, 59);
+}
+header li:hover{
+	background-color: #09AB6B;
+	color: white;
+	transition: 0.4s;
+}
+.logo-style{
+	 cursor: pointer;
+	 float: left;
+	 margin-right: 30px;
+}
+.login{
+	width: 160px;
+	height: 30px;
+	margin-left: 10px;
+	float: right;
+	margin-top: 20px;
+}
+.btn-login{
+	width: 68px;
+	height: 30px;
+	line-height: 30px;
+	float: left;
+	text-align: center;
+	border: 1px solid #09AB6B;
+	margin-right: 20px;
+	cursor: pointer;
+}
+.btn-login:hover{
+	background-color: #09AB6B;
+	color: white;
+	transition: 0.4s;
+}
+.btn-regist{
+	background-color: #09AB6B; 
+	color: white;
+	width: 68px;
+	height: 30px;
+	line-height: 30px;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+}
+.login-user{
+	height: 70px;
+	line-height: 70px;
+	cursor: pointer;
+	float: right;
+	display: none;
+}
+.login-user img{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	margin-right: 10px;
+	vertical-align:middle;
+}
+.push-left{
+	width: 25%;
+	min-height: 320px;
+	border: 3px solid #09AB6B;
+	float: left;
+	border-radius: 3px;
+}
+.push-right{
+	width: 74%;
+	min-height: 800px;
+	float: right;
+}
+.push-left ul{
+	width: 90%;
+	padding: 20px;
+	margin: auto;
+}
+.push-left li{
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	border-radius: 25px;
+	margin-top: 20px;
+	cursor: pointer;
+	font-size: 16px;
+}
+.push-item{
+	width: 100%;
+	height: 124px;
+	padding: 15px;
+	cursor: pointer;
+	background-color: #FFFFFF;
+	border: 1px gray solid;
+	margin-bottom: 3px;
+}
+.push-item:hover{
+	background-color: #F5F6F7;
+}
+.push-title{
+	font-size: 20px;
+	font-weight: 600;
+}
+.push-detail{
+	font-size:18px;
+	color: gray;
+	padding-left: 8px;
+}
+.push-name{
+	font-size:18px;
+	margin-bottom: 5px;
+	float: right;
+}
+.push-time{
+	font-size: 18px;
+	float: right;
+}
+.push-classify{
+	width: 100%;
+	font-size: 18px;
+	font-weight: 600;
+	padding: 10px;
+}
+.detail{
+	padding: 10px 0;
+	line-height: 30px;
+}
+.time{
+	height: 20px;
+	width: 100%;
+	
+}
+.push-tag{
+	font-size: 18px;
+	
+}
+.pagination-lg .page-link{
+	font-size: 18px;
+	margin-top: 10px;
+}

@@ -1,0 +1,254 @@
+header{
+	width: 100%;
+	height: 70px;
+	padding: 0 230px;
+	box-shadow: 3px 3px 3px #D4D1D1;
+	position: sticky;
+	top: 0;
+	z-index: 5;
+	background-color: white;
+}
+.carousel-inner img {
+      width: 100%;
+      height: 100%;
+}
+header ul{
+	height: 70px;
+	width: 100%;
+}
+header li{
+	width: 160px;
+	height: 70px;
+	float: left;
+	border-left: 1px #EFEFEF solid;
+	line-height: 70px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 16px;
+	color: rgb(59, 59, 59);
+}
+header li:hover{
+	background-color: #09AB6B;
+	color: white;
+	transition: 0.4s;
+}
+.logo-style{
+	 cursor: pointer;
+	 float: left;
+	 margin-right: 30px;
+}
+.login{
+	width: 160px;
+	height: 30px;
+	margin-left: 10px;
+	float: right;
+	margin-top: 20px;
+}
+.btn-login{
+	width: 68px;
+	height: 30px;
+	line-height: 30px;
+	float: left;
+	text-align: center;
+	border: 1px solid #09AB6B;
+	margin-right: 20px;
+	cursor: pointer;
+}
+.btn-login:hover{
+	background-color: #09AB6B;
+	color: white;
+	transition: 0.4s;
+}
+.btn-regist{
+	background-color: #09AB6B; 
+	color: white;
+	width: 68px;
+	height: 30px;
+	line-height: 30px;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+}
+.login-user{
+	line-height: 30px;
+	cursor: pointer;
+}
+.login-user img{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	margin-right: 10px;
+	vertical-align:middle;
+}
+/* 复制上面 */
+.carousel-item{
+	height: 300px;
+}
+.text-content{
+	width: 1000px;
+	margin: auto;
+	padding: 20px 0;
+}
+.lightchat {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.lightchat:after {
+	content: '';
+	clear: both;
+	display: block;
+	/*width: 100%;*/
+}
+
+.lightchat li {
+	float: left;
+	transition: all .2s;
+	/*transition-delay: 1s*/
+	width: 25%;
+	height: 230px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	padding: 10px;
+	text-align: center;
+	border-radius: 5px;
+	background-color: white;
+}
+
+.lightchat li h2 {
+	font-size: 20px;
+	text-align: center;
+	margin: 10px 0;
+}
+.lightchat li a {
+	display: block;
+	width: 90%;
+	margin: 10px auto;
+	/*height: 60px;*/
+	/*line-height: 60px;*/
+	text-align: center;
+	background: #DA6D0E;
+	border-radius: 10px;
+	transition: all .5s;
+	position: relative;
+	padding: 20px 0;
+	text-decoration: none;
+	color: #fff;
+}
+.lightchat li a:hover {
+	box-shadow: 0px 1px 10px rgba(0,0,0,.8);
+}
+
+.lightchat li:hover{
+	/*background: #efefef;*/
+	box-shadow: 0px 4px 20px rgba(0,0,0,.3);
+	border-radius: 10px;
+	transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	border: none;
+	/*border: 1px solid #ccc;*/
+	background: #fff;
+	cursor: pointer;
+}
+.lightchat li img{
+	width: 80px;
+	margin: 10px 0;
+}
+.modal-body{
+	height: 75vh;
+}
+.plan{
+	width: 50%;
+	margin: auto;
+}
+.plan-radio{
+	margin-top: 25%;
+	text-align: center;
+	font-weight: 600;
+	font-size: 22px;
+}
+.plan-input{
+	word-break: break-word;
+	margin: 20px;
+}
+.plan-input label:hover{
+	cursor: pointer;
+	color: #09AB6B;
+	transition: 0.2s;
+}
+.indiv{
+	width: 70%;
+	margin: auto;
+}
+.indiv-title{
+	font-weight: 600;
+	font-size: 18px;
+	margin: 20px 0;
+}
+.flover{
+	width: 25%;
+	margin: 10px 30px;
+}
+.flover label{
+	cursor: pointer;
+}
+.drink{
+	margin: 20px 10px;
+}
+.drink label{
+	cursor: pointer;
+}
+.star{
+	margin: 20px ;
+}
+.star-style{
+	font-size: 22px;
+	margin-right: 10px;
+}
+.star-style:hover{
+	cursor: pointer;
+}
+.show-view{
+	width: 1000px;
+	margin: auto;
+	margin-bottom: 20px;
+}
+.show-border{
+	border: 3px solid #09AB6B;
+	padding: 20px;
+}
+.show-img{
+	float: left;
+	margin: 15px;
+	padding: 10px;
+	background-color: white;
+	box-shadow: 3px 3px 3px 3px gainsboro;
+	text-align: center;
+	cursor: pointer;
+}
+.show-style{
+	width: 140px;
+}
+.show-img div{
+	margin-top: 10px;
+}
+.show-img:hover{
+	/*background: #efefef;*/
+	box-shadow: 0px 4px 20px rgba(0,0,0,.3);
+	transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	border: none;
+	/*border: 1px solid #ccc;*/
+	background: #fff;
+	color: #09AB6B;
+}
+footer{
+	height: 40px;
+	background-color: #444444;
+	color: gainsboro;
+	font-size: 13px;
+	text-align: center;
+	line-height: 40px;
+	margin-top: 150px;
+}
