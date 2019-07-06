@@ -1,0 +1,137 @@
+header{
+    width: 100%;
+    height: 70px;
+    padding: 0 230px;
+    box-shadow: 3px 3px 3px #D4D1D1;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: white;
+}
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+header ul{
+    height: 70px;
+    width: 100%;
+}
+header li{
+    width: 160px;
+    height: 70px;
+    float: left;
+    border-left: 1px #EFEFEF solid;
+    line-height: 70px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgb(59, 59, 59);
+}
+header li:hover{
+    background-color: #09AB6B;
+    color: white;
+    transition: 0.4s;
+}
+.logo-style{
+    cursor: pointer;
+    float: left;
+    margin-right: 30px;
+}
+.login{
+    width: 160px;
+    height: 30px;
+    margin-left: 10px;
+    float: right;
+    margin-top: 20px;
+}
+.btn-login{
+    width: 68px;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    text-align: center;
+    border: 1px solid #09AB6B;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.btn-login:hover{
+    background-color: #09AB6B;
+    color: white;
+    transition: 0.4s;
+}
+.btn-regist{
+    background-color: #09AB6B;
+    color: white;
+    width: 68px;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+}
+.login-user{
+    height: 70px;
+    line-height: 70px;
+    cursor: pointer;
+    float: right;
+    display: none;
+}
+.login-user img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align:middle;
+}
+/*复制上面*/
+
+.info-bar{
+    background-color: rgba(250, 250, 250,1);
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.info-item{
+    /*background-color: #09AB6B;*/
+    width: 70%;
+    padding: 20px 0 10px 0;
+    border-bottom: 1px solid #DDDDDD;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.info-item-img{
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+.info-item-bt{
+    border: 0;
+}
+.info-bt{
+    margin: 15px;
+    padding: 0 7px;
+    background-color: #09AB6B;
+    border: 0;
+    border-radius: 2px;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    font-family: "微软雅黑";
+    cursor: pointer;
+}
+.info-name{
+    flex: 1;
+    border-left: 10px solid #09AB6B;
+    font-weight: 300;
+    color: #000000;
+
+}
+.info-value{
+    flex: 2;
+    font-weight: 500;
+    color: darkgrey;
+}

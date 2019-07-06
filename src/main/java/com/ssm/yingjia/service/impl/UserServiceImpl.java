@@ -23,6 +23,12 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectByPrimaryKey(userId);
     }
 
+    /**
+     * 用手机号判断一个用户是否已存在
+     * @param user
+     * @return
+     * @throws Exception
+     */
     @Override
     public boolean userIsExist(User user) throws Exception {
         UserExample userExample = new UserExample();
@@ -31,6 +37,12 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    /**
+     * 添加一个用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
     @Override
     public boolean addUser(User user) throws Exception {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -41,11 +53,45 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    /**
+     * 通过手机号和密码查询一个用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
     @Override
     public User getUser(User user) throws Exception {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserPhoneEqualTo(user.getUserPhone()).andUserPasswordEqualTo(user.getUserPassword());
         List<User> list = userMapper.selectByExample(userExample);
-        return list.get(0);
+        if (list.size()>0) return list.get(0);
+        return null;
+    }
+
+    /**
+     * 用id查询一个用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public User selectUserById(User user) throws Exception {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andUserIdEqualTo(user.getUserId());
+        List<User> list = userMapper.selectByExample(userExample);
+        if (list.size()>0) return list.get(0);
+        return null;
+    }
+
+    /**
+     * 根据id修改一个用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public boolean updateUserById(User user) throws Exception {
+        if (userMapper.updateByPrimaryKeySelective(user)>0)  return true;
+        return false;
     }
 }

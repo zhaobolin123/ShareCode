@@ -31,7 +31,7 @@ public class RegisterController {
 
     @RequestMapping(value = "register_do",method = RequestMethod.POST)
     @ResponseBody
-    public ModelMap register_page(User user, HttpServletRequest request) throws Exception {
+    public ModelMap register_do(User user, HttpServletRequest request) throws Exception {
 //        String userNickname = user.getUserNickname();
 //        String userPhone = user.getUserPhone();
 //        String userPassword = user.getUserPassword();

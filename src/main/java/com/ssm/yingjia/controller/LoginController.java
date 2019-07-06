@@ -23,14 +23,27 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 返回登录页面
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "login_page",method = RequestMethod.GET)
-    public String register_page(HttpServletRequest request) throws Exception {
+    public String login_page(HttpServletRequest request) throws Exception {
         return "jsp/login";
     }
 
+    /**
+     * 执行登录操作
+     * @param user
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "login_do",method = RequestMethod.POST)
     @ResponseBody
-    public ModelMap register_page(User user, HttpServletRequest request) throws Exception {
+    public ModelMap login_do(User user, HttpServletRequest request) throws Exception {
 //        String userPhone = user.getUserPhone();
 //        String userPassword = user.getUserPassword();
         ModelMap modelMap = new ModelMap();
@@ -45,7 +58,7 @@ public class LoginController {
             if (myUser != null){
                 request.getSession().setAttribute("currentUser",myUser);
                 modelMap.addAttribute("isOK",true);
-                modelMap.addAttribute("url","testMain");
+                modelMap.addAttribute("url","personal");//换回主页的url
             }
             else {
                 modelMap.addAttribute("isOK",false);

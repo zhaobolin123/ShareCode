@@ -11,4 +11,8 @@ public interface UserService {
     boolean addUser(User user) throws Exception;
     //登录
     User getUser(User user) throws Exception;
+    //由id查询一个用户
+    User selectUserById(User user) throws Exception;
+    //由id修改一个用户
+    boolean updateUserById(User user) throws Exception;
 }
