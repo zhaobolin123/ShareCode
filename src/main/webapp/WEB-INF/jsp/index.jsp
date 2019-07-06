@@ -15,7 +15,7 @@
     <img src="${pageContext.request.contextPath}/img/logo.png" height="70px" alt="营+" class="logo-style">
     <ul>
         <li style="border-style: none; background-color: #09AB6B; color: white;">网站首页</li>
-        <li>日常推送</li>
+        <a href="/push?currPage=1"><li>日常推送</li></a>
         <li>定制菜品</li>
         <li>我的信息</li>
         <div class="login">

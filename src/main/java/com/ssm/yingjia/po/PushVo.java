@@ -2,7 +2,7 @@ package com.ssm.yingjia.po;
 
 import java.util.Date;
 
-public class Push {
+public class PushVo {
     private Integer pushId;
 
     private String pushName;
@@ -14,6 +14,8 @@ public class Push {
     private String pushContent;
 
     private Date pushTime;
+
+    private Dietitian dietitian;
 
     public Integer getPushId() {
         return pushId;
@@ -61,5 +63,13 @@ public class Push {
 
     public void setPushTime(Date pushTime) {
         this.pushTime = pushTime;
+    }
+
+    public Dietitian getDietitian() {
+        return dietitian;
+    }
+
+    public void setDietitian(Dietitian dietitian) {
+        this.dietitian = dietitian;
     }
 }

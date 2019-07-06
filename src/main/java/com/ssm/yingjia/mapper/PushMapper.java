@@ -3,6 +3,9 @@ package com.ssm.yingjia.mapper;
 import com.ssm.yingjia.po.Push;
 import com.ssm.yingjia.po.PushExample;
 import java.util.List;
+import java.util.Map;
+
+import com.ssm.yingjia.po.PushVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface PushMapper {
@@ -33,4 +36,12 @@ public interface PushMapper {
     int updateByPrimaryKeyWithBLOBs(Push record);
 
     int updateByPrimaryKey(Push record);
+
+    List<PushVo> selectAll(Map<String,Object> data);
+
+    List<PushVo> selectAllByType(Map<String,Object> data);
+
+    Integer countAll();
+
+    Integer countAllByType(Integer pushType);
 }
