@@ -16,8 +16,10 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 登录页面
- */
+* Author: 赵博林
+* @Date 2019/7/8 13:55
+* @Description: 新闻推送controller
+*/
 
 @Controller
 public class PushController {
@@ -25,7 +27,13 @@ public class PushController {
     @Autowired
     private PushService pushService;
 
-    //返回推送界面或全部消息
+    /**
+    * Author: 赵博林
+    * @Date 2019/7/8 13:56
+    * @Description: 返回全部消息
+    * @Param: [request, currPage]
+    * @return : java.lang.String
+    */
     @RequestMapping(value = "push",method = RequestMethod.GET)
     public String push_page(HttpServletRequest request,Integer currPage) throws Exception {
         User user = (User) request.getSession().getAttribute("currentUser");
@@ -41,7 +49,6 @@ public class PushController {
             else{
                 PageCount = (count/4)+1;
             }
-            System.out.println(currPage);
             List<PushVo> pushlist = pushService.pushInfo(currPage,4);
             request.setAttribute("push",pushlist);
             request.setAttribute("PageCount",PageCount);
@@ -49,7 +56,13 @@ public class PushController {
         }
     }
 
-    //返回营养知识
+    /**
+    * Author: 赵博林
+    * @Date 2019/7/8 13:57
+    * @Description: 返回分类消息
+    * @Param: [request, pushtype, currPage]
+    * @return : java.lang.String
+    */
     @RequestMapping(value = "pushbytype",method = RequestMethod.GET)
     public String push_page(HttpServletRequest request, Integer pushtype,Integer currPage) throws Exception {
         User user = (User) request.getSession().getAttribute("currentUser");

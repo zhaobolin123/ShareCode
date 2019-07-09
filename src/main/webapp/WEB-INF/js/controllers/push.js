@@ -1,4 +1,3 @@
-$(function() {
+$(".push-classify").click(function(){
     alert("sss");
-    $("#page2").hide();
-}
+});
