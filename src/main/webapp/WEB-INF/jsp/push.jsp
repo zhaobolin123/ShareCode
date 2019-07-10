@@ -49,9 +49,9 @@
 				<div class="push-classify">推送分类</div>
 				<ul>
                     <a href="/push?currPage=1"><li class="btn-success">全部消息</li></a>
-                    <a href="/pushbytype?pushtype=1&currPage=1"><li class="btn-success">营养知识</li></a>
-                    <a href="/pushbytype?pushtype=2&currPage=1"><li class="btn-success">行业新闻</li></a>
-                    <a href="/pushbytype?pushtype=3&currPage=1"><li class="btn-success">营养方案</li></a>
+                    <a href="/pushbytype?pushtype=1&currPage=1"><li class="btn-success btnhidden">营养知识</li></a>
+                    <a href="/pushbytype?pushtype=2&currPage=1"><li class="btn-success btnhidden">行业新闻</li></a>
+                    <a href="/pushbytype?pushtype=3&currPage=1"><li class="btn-success btnhidden">营养方案</li></a>
 				</ul>
 			</div>
 
@@ -91,17 +91,6 @@
                     <%}%>
 				 	 <li class="page-item"><a class="page-link" href="/push?currPage=<%=Page%>">末页</a></li>
 				</ul>
-                </div>
-                <div id="page2">
-                <ul class="pagination pagination-lg">
-                    <li class="page-item"><a class="page-link" href="/push?currPage=1">首页</a></li>
-                    <%
-                        for (Integer j=0;j<Page;j++){
-                    %>
-                    <li class="page-item"><a class="page-link" href="/push?currPage=<%=j+1%>"><%=j+1%></a></li>
-                    <%}%>
-                    <li class="page-item"><a class="page-link" href="/push?currPage=<%=Page%>">末页</a></li>
-                </ul>
                 </div>
 			</div>
 		</div>

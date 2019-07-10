@@ -64,7 +64,7 @@ public class PushController {
     * @return : java.lang.String
     */
     @RequestMapping(value = "pushbytype",method = RequestMethod.GET)
-    public String push_page(HttpServletRequest request, Integer pushtype,Integer currPage) throws Exception {
+    public String push_pageType(HttpServletRequest request, Integer pushtype,Integer currPage) throws Exception {
         User user = (User) request.getSession().getAttribute("currentUser");
         if(user==null){
             return "redirect:/login_page";
