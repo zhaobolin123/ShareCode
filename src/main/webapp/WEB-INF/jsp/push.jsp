@@ -18,10 +18,10 @@
 	<header>
 		<img src="${pageContext.request.contextPath}/img/logo.png" height="70px" alt="营+" class="logo-style">
 		<ul>
-			<li style="border-style: none; background-color: #09AB6B; color: white;">网站首页</li>
-            <a href="/push?currPage=1"><li>日常推送</li></a>
+			<li>网站首页</li>
+            <a href="/pushbytype?pushtype=0&currPage=1"><li style="border-style: none; background-color: #09AB6B; color: white;">日常推送</li></a>
 			<li>定制菜品</li>
-			<li>我的信息</li>
+			<a href="personal"><li>我的信息</li></a>
 			<div class="login">
 				<%
 					User user = (User) session.getAttribute("currentUser");
@@ -48,10 +48,10 @@
 			<div class="push-left">
 				<div class="push-classify">推送分类</div>
 				<ul>
-                    <a href="/push?currPage=1"><li class="btn-success">全部消息</li></a>
-                    <a href="/pushbytype?pushtype=1&currPage=1"><li class="btn-success">营养知识</li></a>
-                    <a href="/pushbytype?pushtype=2&currPage=1"><li class="btn-success">行业新闻</li></a>
-                    <a href="/pushbytype?pushtype=3&currPage=1"><li class="btn-success">营养方案</li></a>
+                    <a href="/pushbytype?pushtype=0&currPage=1"><li class="btn-success" onclick="allnews()">全部消息</li></a>
+                    <a href="/pushbytype?pushtype=1&currPage=1"><li class="btn-success btnhidden" onclick="yynews()">营养知识</li></a>
+                    <a href="/pushbytype?pushtype=2&currPage=1"><li class="btn-success btnhidden" onclick="hynews()">行业新闻</li></a>
+                    <a href="/pushbytype?pushtype=3&currPage=1"><li class="btn-success btnhidden" onclick="fanews()">营养方案</li></a>
 				</ul>
 			</div>
 
@@ -63,7 +63,13 @@
 				<div class="push-item">
 					<div class="push-title"><%=list.get(i).getPushName()%></div>
 					<div class="detail">
-						<span class="push-detail"><%=list.get(i).getPushContent().substring(0,30)+"..."%></span>
+						<%
+							String content = list.get(i).getPushContent();
+							if(content!=null && content.length()>30){
+							    content=content.substring(0,30)+"...";
+							}
+						%>
+						<span class="push-detail"><%=content%></span>
 						<span class="push-name"><i class="fa fa-user" style="margin-right: 3px;"></i><%=list.get(i).getDietitian().getDietitianNickname()%></span>
 					</div>
 					<div style="clear: both;"></div>
@@ -79,30 +85,55 @@
 				</div>
 				<%}%>
                 <%
+
                     Integer Page = (Integer) request.getAttribute("PageCount");
+                    Integer currPage = (Integer) request.getAttribute("currPage");
+                    Integer pushtype = (Integer) request.getAttribute("pushtype");
                 %>
                 <div id="page1">
 				<ul class="pagination pagination-lg">
-				  	<li class="page-item"><a class="page-link" href="/push?currPage=1">首页</a></li>
+				  	<li class="page-item"><a class="page-link" href="/pushbytype?pushtype=<%=pushtype%>&currPage=1">首页</a></li>
                     <%
                          for (Integer j=0;j<Page;j++){
                     %>
-				 	 <li class="page-item"><a class="page-link" href="/push?currPage=<%=j+1%>"><%=j+1%></a></li>
+				 	 <li class="page-item"><a class="page-link" <%if ((j+1)==currPage)%> style="background-color: #28a745; color: #fff" <%;%> href="/pushbytype?pushtype=<%=pushtype%>&currPage=<%=j+1%>"><%=j+1%></a></li>
                     <%}%>
-				 	 <li class="page-item"><a class="page-link" href="/push?currPage=<%=Page%>">末页</a></li>
+				 	 <li class="page-item"><a class="page-link" href="/pushbytype?pushtype=<%=pushtype%>&currPage=<%=Page%>">末页</a></li>
 				</ul>
                 </div>
-                <div id="page2">
-                <ul class="pagination pagination-lg">
-                    <li class="page-item"><a class="page-link" href="/push?currPage=1">首页</a></li>
-                    <%
-                        for (Integer j=0;j<Page;j++){
-                    %>
-                    <li class="page-item"><a class="page-link" href="/push?currPage=<%=j+1%>"><%=j+1%></a></li>
-                    <%}%>
-                    <li class="page-item"><a class="page-link" href="/push?currPage=<%=Page%>">末页</a></li>
-                </ul>
-                </div>
+                <%--<div id="page2">--%>
+                    <%--<ul class="pagination pagination-lg">--%>
+                        <%--<li class="page-item"><a class="page-link" href="/pushbytype?pushtype=1&currPage=1">首页</a></li>--%>
+                        <%--<%--%>
+                            <%--for (Integer j=0;j<Page;j++){--%>
+                        <%--%>--%>
+                        <%--<li class="page-item"><a class="page-link" <%if ((j+1)==currPage)%> style="background-color: #28a745; color: #fff" <%;%> href="/pushbytype?pushtype=1&currPage=<%=j+1%>"><%=j+1%></a></li>--%>
+                        <%--<%}%>--%>
+                        <%--<li class="page-item"><a class="page-link" href="/pushbytype?pushtype=1&currPage=<%=Page%>">末页</a></li>--%>
+                    <%--</ul>--%>
+                <%--</div>--%>
+                <%--<div id="page3">--%>
+                    <%--<ul class="pagination pagination-lg">--%>
+                        <%--<li class="page-item"><a class="page-link" href="/pushbytype?pushtype=2&currPage=1">首页</a></li>--%>
+                        <%--<%--%>
+                            <%--for (Integer j=0;j<Page;j++){--%>
+                        <%--%>--%>
+                        <%--<li class="page-item"><a class="page-link" <%if ((j+1)==currPage)%> style="background-color: #28a745; color: #fff" <%;%> href="/pushbytype?pushtype=2&currPage=<%=j+1%>"><%=j+1%></a></li>--%>
+                        <%--<%}%>--%>
+                        <%--<li class="page-item"><a class="page-link" href="/pushbytype?pushtype=2&currPage=<%=Page%>">末页</a></li>--%>
+                    <%--</ul>--%>
+                <%--</div>--%>
+                <%--<div id="page4">--%>
+                    <%--<ul class="pagination pagination-lg">--%>
+                        <%--<li class="page-item"><a class="page-link" href="/pushbytype?pushtype=3&currPage=1">首页</a></li>--%>
+                        <%--<%--%>
+                            <%--for (Integer j=0;j<Page;j++){--%>
+                        <%--%>--%>
+                        <%--<li class="page-item"><a class="page-link" <%if ((j+1)==currPage)%> style="background-color: #28a745; color: #fff" <%;%> href="/pushbytype?pushtype=3&currPage=<%=j+1%>"><%=j+1%></a></li>--%>
+                        <%--<%}%>--%>
+                        <%--<li class="page-item"><a class="page-link" href="/pushbytype?pushtype=3&currPage=<%=Page%>">末页</a></li>--%>
+                    <%--</ul>--%>
+                <%--</div>--%>
 			</div>
 		</div>
 	</body>

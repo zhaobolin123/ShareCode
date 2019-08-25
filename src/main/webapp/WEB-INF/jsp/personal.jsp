@@ -16,9 +16,9 @@
     <img src="img/logo.png" height="70px" alt="营+" class="logo-style">
     <ul>
         <li>网站首页</li>
-        <li>日常推送</li>
+        <a href="/pushbytype?pushtype=0&currPage=1"><li>日常推送</li></a>
         <li>定制菜品</li>
-        <li style="border-style: none; background-color: #09AB6B; color: white;">我的信息</li>
+        <a href="/personal"><li style="border-style: none; background-color: #09AB6B; color: white;">我的信息</li></a>
         <%--<!--<div class="login">--%>
                 <%--<%--%>
                     <%--User user = (User) session.getAttribute("currentUser");--%>

@@ -16,8 +16,10 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 登录页面
- */
+* Author: 赵博林
+* @Date 2019/7/8 13:55
+* @Description: 新闻推送controller
+*/
 
 @Controller
 public class PushController {
@@ -25,39 +27,61 @@ public class PushController {
     @Autowired
     private PushService pushService;
 
-    //返回推送界面或全部消息
-    @RequestMapping(value = "push",method = RequestMethod.GET)
-    public String push_page(HttpServletRequest request,Integer currPage) throws Exception {
-        User user = (User) request.getSession().getAttribute("currentUser");
-        if(user==null){
-            return "redirect:/login_page";
-        }
-        else{
-            Integer count = pushService.countPush();
-            Integer PageCount;
-            if(count%4==0){
-                PageCount = count/4;
-            }
-            else{
-                PageCount = (count/4)+1;
-            }
-            System.out.println(currPage);
-            List<PushVo> pushlist = pushService.pushInfo(currPage,4);
-            request.setAttribute("push",pushlist);
-            request.setAttribute("PageCount",PageCount);
-            return "jsp/push";
-        }
-    }
+//    /**
+//    * Author: 赵博林
+//    * @Date 2019/7/8 13:56
+//    * @Description: 返回全部消息
+//    * @Param: [request, currPage]
+//    * @return : java.lang.String
+//    */
+//    @RequestMapping(value = "push",method = RequestMethod.GET)
+//    public String push_page(HttpServletRequest request,Integer currPage) throws Exception {
+//        User user = (User) request.getSession().getAttribute("currentUser");
+//        if(user==null){
+//            return "redirect:/login_page";
+//        }
+//        else{
+//            Integer count = pushService.countPush();
+//            Integer PageCount;
+//            if(count%4==0){
+//                PageCount = count/4;
+//            }
+//            else{
+//                PageCount = (count/4)+1;
+//            }
+//            if (PageCount<currPage){
+//                currPage=1;
+//            }
+//            List<PushVo> pushlist = pushService.pushInfo(currPage,4);
+//            request.setAttribute("push",pushlist);
+//            request.setAttribute("PageCount",PageCount);
+//            request.setAttribute("currPage",currPage);
+//            return "jsp/push";
+//        }
+//    }
 
-    //返回营养知识
+    /**
+    * Author: 赵博林
+    * @Date 2019/7/8 13:57
+    * @Description: 返回分类消息
+    * @Param: [request, pushtype, currPage]
+    * @return : java.lang.String
+    */
     @RequestMapping(value = "pushbytype",method = RequestMethod.GET)
-    public String push_page(HttpServletRequest request, Integer pushtype,Integer currPage) throws Exception {
+    public String push_pageType(HttpServletRequest request, Integer pushtype,Integer currPage) throws Exception {
         User user = (User) request.getSession().getAttribute("currentUser");
+        List<PushVo> pushlist;
+        Integer count;
         if(user==null){
             return "redirect:/login_page";
         }
         else{
-            Integer count = pushService.countPushByType(pushtype);
+            if (pushtype==0){
+                count = pushService.countPush();
+            }
+            else {
+                count = pushService.countPushByType(pushtype);
+            }
             Integer PageCount;
             if(count%4==0){
                 PageCount = count/4;
@@ -65,9 +89,20 @@ public class PushController {
             else{
                 PageCount = (count/4)+1;
             }
-            List<PushVo> pushlist = pushService.pushInfoByType(pushtype,currPage,4);
+            if (PageCount<currPage){
+                currPage=1;
+            }
+
+            if (pushtype==0){
+                pushlist = pushService.pushInfo(currPage,4);
+            }
+            else{
+                pushlist = pushService.pushInfoByType(pushtype,currPage,4);
+            }
             request.setAttribute("push",pushlist);
             request.setAttribute("PageCount",PageCount);
+            request.setAttribute("currPage",currPage);
+            request.setAttribute("pushtype",pushtype);
             return "jsp/push";
         }
     }
