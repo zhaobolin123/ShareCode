@@ -1,5 +1,12 @@
 
 $(function(){
+
+    $(document).keyup(function (event) {
+        if (event.keyCode == 13){
+            $('#login-submit').trigger("click");
+        }
+    });
+
      //登录
     $('#login-submit').click(function(){
         var str_userPhone = $('#userPhone-input').val();

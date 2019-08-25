@@ -1,5 +1,12 @@
 
 $(function(){
+
+    $(document).keyup(function (event) {
+        if (event.keyCode == 13){
+            $('#register-submit').trigger("click");
+        }
+    });
+
      //注册
     $('#register-submit').click(function(){
         var str_userNickname = $('#userNickname-input').val();
