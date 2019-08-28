@@ -45,7 +45,7 @@
 <div id="demo" class="carousel slide" data-ride="carousel" style="width: 1000px; margin: auto;margin-top: 20px;">
     <div class="info-bar">
         <div class="info-item info-item-img">
-            <img  style="margin: 0 auto; width: 120px; height:120px; border-radius: 50%;" src="${pageContext.request.contextPath}/img/<%=user.getUserPic()%>" >
+            <img  style="margin: 0 auto; width: 120px; height:120px; border-radius: 50%;" src="${pageContext.request.contextPath}/img/portrait/<%=user.getUserPic()%>" >
             <span class="info-bt"  data-toggle="modal" data-target="#modal-updateImg">修改头像</span>
         </div>
         <div class="info-item">
@@ -137,8 +137,8 @@
             </div>
             <div class="modal-body">
                 <form id="form-updateImg" enctype="multipart/form-data">
-                    <input type="file"  accept="image/jpg image/png" id="input-updateImg" style="display: none;"  onchange="imgChanged(this)"/>
-                    <img id="img-updateImg" src="${pageContext.request.contextPath}/img/<%=user.getUserPic()%>" style="width: 240px; height: 240px;" />
+                    <input type="file" name="updateFile" accept="image/jpeg,image/png" id="input-updateImg" style="display: none;"  onchange="imgChanged(this)"/>
+                    <img id="img-updateImg" src="${pageContext.request.contextPath}/img/portrait/<%=user.getUserPic()%>" style="width: 240px; height: 240px;" />
                     <span id="bt-changeImg" class="info-bt" >选择图片</span>
                 </form>
             </div>

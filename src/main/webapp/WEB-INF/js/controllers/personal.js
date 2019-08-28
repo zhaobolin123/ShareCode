@@ -21,28 +21,41 @@ $(function(){
 	});
 	//点击确定修改图片
 	$('#modal-updateImg-bt').click(function(){
-		var formData = new FormData($('#form-updateImg')[0]);
-		$.ajax({
-			url:"update_pic",
-			type:"post",
-			contentType: false,//enctype已在form中定义为multipart/form-data，此处需防止JQuery修改contentType
-			processData: false,//防止JQuery修改form数据
-			dataType:'json',
-			data: formData,
-			success: function(result){
-				if(result.isOK){
-                    alert("修改成功");
-                    $(window).attr('location', result.url);//跳转刷新
+	    var file = document.getElementById('input-updateImg').files[0];
+	    if (file == null){
+	        alert("头像未修改");
+	        return;
+        }
+	    var fileType = file.name.substr(file.name.lastIndexOf("."), file.name.length);
+	    if (fileType != ".jpg" && fileType != ".JPG" && fileType != ".jpeg" && fileType != ".JPEG" && fileType != ".png" && fileType != ".PNG") {
+	        alert("上传图片仅支持JPG、PNG格式");
+        }
+        else{
+            var formData = new FormData();
+            formData.append("userPicFile", file);
+            $.ajax({
+                url:"update_pic",
+                type:"post",
+                contentType: false,//enctype已在form中定义为multipart/form-data，此处需防止JQuery修改contentType
+                processData: false,//防止JQuery修改form数据
+                dataType:'json',
+                data: formData,
+                success: function(result){
+                    if(result.isOK){
+                        alert("修改成功");
+                        $(window).attr('location', result.url);//跳转刷新
+                    }
+                    else{
+                        alert("修改失败:"+result.errMsg);
+                    }
+                },
+                error: function(){
+                    alert("警告：系统错误");
+                    $('#modal-updateImg').modal('hide');//关闭
                 }
-                else{
-                    alert("修改失败:"+result.errMsg);
-                }
-			},
-			error: function(){
-				alert("警告：系统错误");
-				$('#modal-updateImg').modal('hide');//关闭
-			}
-		});
+            });
+        }
+
 	}),
 	//关闭模态框时复原表单
 	$('#modal-updateImg').on('hide.bs.modal',function(){
