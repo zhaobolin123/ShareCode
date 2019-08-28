@@ -17,6 +17,17 @@
       <result column="dietitian_nickname" jdbcType="VARCHAR" property="dietitianNickname" />
     </association>
   </resultMap>
+
+  <resultMap id="PushMap" type="com.ssm.yingjia.po.Push">
+    <id column="push_id" jdbcType="INTEGER" property="pushId" />
+    <result column="push_name" jdbcType="VARCHAR" property="pushName" />
+    <result column="push_type" jdbcType="INTEGER" property="pushType" />
+    <result column="dietitian_id" jdbcType="INTEGER" property="dietitianId" />
+    <result column="push_time" jdbcType="TIMESTAMP" property="pushTime" />
+    <result column="dietitian_name" jdbcType="TIMESTAMP" property="pushTime" />
+    <result column="dietitian_nickname" jdbcType="VARCHAR" property="dietitian_nickname" />
+    <result column="push_content" property="pushContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -120,13 +131,17 @@
     where push_id = #{pushId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="ResultMapWithBLOBs" parameterType="map">
-    select push.*,dietitian_nickname from push join dietitian on push.dietitian_id = dietitian.dietitian_id limit #{currIndex},#{pageSize}
+    select push.*,dietitian_nickname from push join dietitian on push.dietitian_id = dietitian.dietitian_id order BY push_time DESC limit #{currIndex},#{pageSize}
   </select>
   <select id="selectAllByType" resultMap="ResultMapWithBLOBs" parameterType="map">
-    select push.*,dietitian_nickname from push join dietitian on push.dietitian_id = dietitian.dietitian_id where push_type = #{pushType} limit #{currIndex},#{pageSize}
+    select push.*,dietitian_nickname from push join dietitian on push.dietitian_id = dietitian.dietitian_id where push_type = #{pushType} order BY push_time DESC limit #{currIndex},#{pageSize}
   </select>
   <select id="countAll" resultType="java.lang.Integer">
     select count(*) from push
+  </select>
+  <!--根据id查询新闻详情-->
+  <select id="selectPushDetail" resultMap="PushMap">
+    SELECT push_name,push_type,push_content,push_time,dietitian_nickname from push join dietitian on push.dietitian_id = dietitian.dietitian_id where push_id = #{push_id}
   </select>
   <select id="countAllByType" resultType="java.lang.Integer" parameterType="java.lang.Integer">
     select count(*) from push where push_type=#{pushType}

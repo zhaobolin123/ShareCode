@@ -162,3 +162,12 @@ header li:hover{
 	font-size: 18px;
 	margin-top: 10px;
 }
+a{
+	text-decoration: none;
+	color: black;
+}
+a:hover{
+	text-decoration:none;
+	cursor:pointer;
+	color: black;
+}

@@ -44,4 +44,6 @@ public interface PushMapper {
     Integer countAll();
 
     Integer countAllByType(Integer pushType);
+
+    Push selectPushDetail(Integer push_id);
 }

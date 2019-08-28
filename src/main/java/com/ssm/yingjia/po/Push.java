@@ -15,6 +15,8 @@ public class Push {
 
     private Date pushTime;
 
+    private String dietitian_nickname;
+
     public Integer getPushId() {
         return pushId;
     }
@@ -61,5 +63,13 @@ public class Push {
 
     public void setPushTime(Date pushTime) {
         this.pushTime = pushTime;
+    }
+
+    public String getDietitian_nickname() {
+        return dietitian_nickname;
+    }
+
+    public void setDietitian_nickname(String dietitian_nickname) {
+        this.dietitian_nickname = dietitian_nickname;
     }
 }

@@ -107,5 +107,10 @@ public class PushController {
         }
     }
 
-
+    @RequestMapping(value = "pushDetail",method = RequestMethod.GET)
+    public String pushDetail(HttpServletRequest request,Integer push_id) throws Exception {
+        Push push = pushService.selectPushDetail(push_id);
+        request.setAttribute("pushDetail",push);
+        return "jsp/pushDetail";
+    }
 }

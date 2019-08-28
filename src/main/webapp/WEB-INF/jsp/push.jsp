@@ -60,7 +60,7 @@
 					List<PushVo> list = (List<PushVo>) request.getAttribute("push");
 					for (int i=0;i<list.size();i++){
 				%>
-				<div class="push-item">
+				<a href="pushDetail?push_id=<%=list.get(i).getPushId()%>"><div class="push-item">
 					<div class="push-title"><%=list.get(i).getPushName()%></div>
 					<div class="detail">
 						<%
@@ -82,7 +82,7 @@
 						</span>
 						<span class="push-time"><i class="fa fa-calendar" style="margin-right: 3px;"></i><%=new SimpleDateFormat("yyyy-MM-dd").format(list.get(i).getPushTime())%></span>
 					</div>
-				</div>
+				</div></a>
 				<%}%>
                 <%
 

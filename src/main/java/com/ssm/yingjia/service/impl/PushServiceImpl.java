@@ -1,6 +1,7 @@
 package com.ssm.yingjia.service.impl;
 
 import com.ssm.yingjia.mapper.PushMapper;
+import com.ssm.yingjia.po.Push;
 import com.ssm.yingjia.po.PushVo;
 import com.ssm.yingjia.service.PushService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,10 @@ public class PushServiceImpl implements PushService {
     @Override
     public Integer countPushByType(Integer type) throws Exception {
         return pushMapper.countAllByType(type);
+    }
+
+    @Override
+    public Push selectPushDetail(Integer push_id) throws Exception {
+        return pushMapper.selectPushDetail(push_id);
     }
 }
